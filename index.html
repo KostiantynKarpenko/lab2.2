@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Users</title>
+        <link rel="stylesheet" href="css/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script defer src="js/index.js"></script>
+    </head>
+    <body>
+        <div class="title">
+            <p class="users">Users</p>
+            <p class="users-number">20 users</p>
+        </div>
+        <div id="app">
+            <div class="search-field">
+                <div class="search-bar" :class="{'active': focused}">
+                    <img src="img/svg/magnifying-glass-thin.svg">
+                    <input type="text" class="field" @focus="focused=true" @blur="focused=false" placeholder="Search for pokemon..." v-model="query">
+                    <img src="img/svg/x-symbol.svg" class="clear-search-bar" @click="clearSearchBar()">
+                </div>
+                <table class="users-table">
+                    <tr v-for="(user, index) in filteredUsers" :key="index">
+                        <td><a class="name" @click="fillQuery(user.name)">{{user.name}}</a></td>
+                        <td><a class="url">{{user.url}}</a></td>
+                        <td><button class="delete-element" @click="deleteElement(index)">Delete</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
