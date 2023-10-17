@@ -40,20 +40,6 @@ const app = new Vue({
         }
     },
     mounted() {
-        // if (!getLS('data') || getLS('data').length == 0){
-        //     fetch(API)
-        //     .then((response) => {
-        //         return response.json();
-        //     })
-        //     .then((data) => {
-        //         this.users = data.results;
-        //         setLS('data', this.users)
-        //     });
-        // }
-        // else{
-        //     this.users = getLS('data');
-        // }
-
         if (!getLS('data') || getLS('data').length == 0){
             fetch(API)
             .then((response) => {
