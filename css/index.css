@@ -68,6 +68,14 @@ td {
   width: 20px;
   cursor: pointer;
 }
+.search-field .empty {
+  font-size: 25px;
+  cursor: default;
+  display: block;
+  padding: 7px 10px;
+  margin: 15px 0;
+  user-select: none;
+}
 .search-field .users-table {
   margin: 15px 0;
   width: 100%;
@@ -109,11 +117,4 @@ td {
   background-color: #000000;
   color: #ffffff;
   transition: 0.2s;
-}
-.search-field .users-table tr span {
-  font-size: 25px;
-  cursor: default;
-  display: block;
-  padding: 7px 0;
-  user-select: none;
 }

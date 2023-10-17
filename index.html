@@ -18,13 +18,14 @@
                     <input type="text" class="field" @focus="focused=true" @blur="focused=false" placeholder="Search for pokemon..." v-model="query">
                     <img src="img/svg/x-symbol.svg" class="clear-search-bar" @click="clearSearchBar()">
                 </div>
-                <table class="users-table">
-                    <tr v-for="(user, index) in filteredUsers" :key="index">
+                <table class="users-table" v-if="filteredUsers.length > 0">
+                    <tr v-for="user in filteredUsers" :key="user.index">
                         <td><a class="name" @click="fillQuery(user.name)">{{user.name}}</a></td>
                         <td><a class="url">{{user.url}}</a></td>
-                        <td><button class="delete-element" @click="deleteElement(index)">Delete</button></td>
+                        <td><button class="delete-element" @click="deleteElement(user.id)">Delete</button></td>
                     </tr>
                 </table>
+                <p v-else class="empty">Not found</p>
             </div>
         </div>
     </body>

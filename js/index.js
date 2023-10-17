@@ -15,8 +15,9 @@ const app = new Vue({
         users: [],
     },
     methods: {
-        deleteElement(query){
-            this.users.splice(query, 1);
+        deleteElement(id){
+            this.users = this.users.filter(user => user.id !== id);
+            this.clog(this.filteredUsers);
             setLS('data', this.users)
         },
         clog(data){
@@ -36,33 +37,15 @@ const app = new Vue({
                 result = ~user.name.toLowerCase().indexOf(query);
                 return result;
             });
-            
         }
     },
     mounted() {
-        if (!getLS('data') || getLS('data').length == 0){
-            fetch(API)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                this.users = data.results;
-                setLS('data', this.users)
-            });
-        }
-        else{
-            this.users = getLS('data');
-        }
-
         // if (!getLS('data') || getLS('data').length == 0){
         //     fetch(API)
         //     .then((response) => {
         //         return response.json();
         //     })
         //     .then((data) => {
-        //         data.results.forEach((element,index) => {
-        //             data.results[index].id = index;
-        //         });
         //         this.users = data.results;
         //         setLS('data', this.users)
         //     });
@@ -70,5 +53,22 @@ const app = new Vue({
         // else{
         //     this.users = getLS('data');
         // }
+
+        if (!getLS('data') || getLS('data').length == 0){
+            fetch(API)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                data.results.forEach((element,index) => {
+                    data.results[index].id = index;
+                });
+                this.users = data.results;
+                setLS('data', this.users)
+            });
+        }
+        else{
+            this.users = getLS('data');
+        }
     },
 });
